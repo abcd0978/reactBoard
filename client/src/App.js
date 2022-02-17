@@ -4,11 +4,11 @@ import {
   Route,
 } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import LandingPage from "./components/Pages/LandingPage";
-import LoginPage from "./components/Pages/LoginPage";
-import SignupPage from"./components/Pages/SignupPage";
+import LandingPage from ".//Pages/LandingPage";
+import LoginPage from "./Pages/LoginPage";
+import SignupPage from"./Pages/SignupPage";
 import Footer from "./components/Footer/Footer";
-import HostPockerPage from "./components/Pages/HostPockerPage";
+import HostPockerPage from "./Pages/HostPockerPage";
 function App() {
   return (
     <div>
