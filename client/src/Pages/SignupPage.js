@@ -1,5 +1,5 @@
-import React,{ useState } from 'react'
-import {useDisPatch} from 'react-redux'
+import React,{ useState} from 'react'
+import {useDispatch} from 'react-redux'
 import {Formik} from "formik";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -15,7 +15,11 @@ import { Box } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import * as Yup from "yup"
 import moment from "moment"
+import {registerUser} from '../actions/index';
 function SignupPage(props) {
+
+  const dispatch = useDispatch();
+
     return (
         <Formik
             initialValues={{
@@ -43,14 +47,16 @@ function SignupPage(props) {
                 })}
             onSubmit={(values, {setSubmitting}) => {
                 setTimeout(() => {
-                  console.log('submittig')
                     let data = {
                         name: values.name,
                         email: values.email,
                         password: values.password,
                         image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
                     }
-                    console.log(data);
+                    dispatch(registerUser(data))
+                    .then(res=>{
+                      console.log("페이로드: "+JSON.stringify(res.payload))
+                    })
                     setSubmitting(false);
                 }, 500)
             }}
@@ -65,7 +71,7 @@ function SignupPage(props) {
               isSubmitting,
             })=>(
             // 여기부터 form html작성
-            <div style={{position:'absolute',top:'50%' ,left:'50%' ,transform: 'translate(-50%,-50%)',width:'30%'}}>
+            <div style={{position:'absolute',top:'50%' ,left:'50%' ,transform: 'translate(-50%,-50%)',width:'30%',minWidth:'350px'}}>
 
               <Paper elevation={7} style={{justifyContent: 'center', minHeight: '30vh' ,padding: '50px'}}>
 
@@ -87,6 +93,7 @@ function SignupPage(props) {
                   variant="outlined"
                   helperText={errors.name && touched.name ? errors.name : ""}
                   autoComplete="off"
+                  autoFocus="true"
                   />
                   <br/>
                 <TextField

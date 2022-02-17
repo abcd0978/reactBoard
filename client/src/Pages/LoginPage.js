@@ -1,5 +1,5 @@
 import React,{ useState } from 'react'
-import {useDisPatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {Formik} from "formik";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,6 +8,9 @@ import Paper from "@material-ui/core/Paper";
 import { Typography } from '@material-ui/core';
 import * as Yup from 'yup';
 function LoginPage() {
+
+    const dispath = useDispatch();
+
     return (
         <Formik
             initialValues={{
@@ -41,9 +44,9 @@ function LoginPage() {
               isSubmitting,
             })=>(
             // 여기부터 form html작성
-            <div style={{position:'absolute',top:'50%' ,left:'50%' ,transform: 'translate(-50%,-50%)',width:'30%'}}>
+            <div style={{position:'absolute',top:'50%' ,left:'50%' ,transform: 'translate(-50%,-50%)',width:'30%',minWidth:'350px'}}>
 
-              <Paper elevation={7} style={{justifyContent: 'center', minHeight: '30vh' ,padding: '50px'}}>
+              <Paper elevation={7} style={{justifyContent: 'center', minHeight: '25vh' ,padding:'40px'}}>
 
               <Typography style={{textAlign:'center'}} component="h1" variant="h5">
                 로그인
@@ -63,6 +66,7 @@ function LoginPage() {
                   variant="outlined"
                   helperText={errors.email && touched.email ? errors.email : ""}
                   autoComplete="off"
+                  autoFocus="true"
                   />
                   <br/>
                 <TextField
