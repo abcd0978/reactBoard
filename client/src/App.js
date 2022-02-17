@@ -12,6 +12,7 @@ import HostPockerPage from "./components/Pages/HostPockerPage";
 function App() {
   return (
     <div>
+
       <Navbar/>
 
       <div style={{ minHeight: 'calc(100vh - 80px)' }}> 
@@ -24,6 +25,7 @@ function App() {
       </div>
 
       <Footer/>
+      
     </div>
   );
 }
