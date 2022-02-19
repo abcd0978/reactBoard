@@ -29,3 +29,13 @@ color: #ffffff;
 text-decoration: none;
 
 }
+
+#logo {
+    align-items: left;
+    float:left
+}
+
+#rightside{
+    align-items: right;
+    float: right;
+}
