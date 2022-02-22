@@ -1,7 +1,16 @@
 import {AUTH_LOGIN} from "../actions/types"
 import {AUTH_REGISTER} from "../actions/types"
+import { AUTH_USER } from "../actions/types"
+import { AUTH_LOGOUT } from "../actions/types"
 
-export default function auth_reducer(state={},action){
+const initialState = {
+    loginSuccess:{success:null},
+    registerSuccess:{success:null},
+    authData:{auth:false,user:{}}
+}
+
+
+export default function auth_reducer(state=initialState,action){
     switch(action.type)
     {
         case AUTH_LOGIN:
@@ -9,15 +18,22 @@ export default function auth_reducer(state={},action){
                 ...state,
                 loginSuccess:action.payload
             }
-        break;
 
         case AUTH_REGISTER:
             return{
                 ...state,
                 registerSuccess:action.payload
             }
-        break;
-        
+        case AUTH_USER:
+            return{
+                ...state,
+                authData:action.payload
+            }
+        case AUTH_LOGOUT:
+            return{
+                ...state,
+                authData:{auth:false,user:{}}
+            }
         default:
             return state
     }
