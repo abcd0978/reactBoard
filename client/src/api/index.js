@@ -3,7 +3,7 @@ import axios from 'axios'
 const instance = axios.create({
     baseURL:'/api',
     withCredentials: true,
-    timeout: 500 //500ms로하자 빡빡하게 앙?
+    timeout: 1000
 })
 
 instance.interceptors.request.use(
