@@ -1,17 +1,10 @@
 import React,{ useState} from 'react'
 import {useDispatch} from 'react-redux'
 import {Formik} from "formik";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import { Box } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import * as Yup from "yup"
 import moment from "moment"
@@ -55,7 +48,12 @@ function SignupPage(props) {
                     }
                     dispatch(registerUser(data))
                     .then(res=>{
-                      console.log("페이로드: "+JSON.stringify(res.payload))
+                      if(res.payload.success){
+                        alert('회원가입을 축하합니다!')
+                        window.location.replace('/')
+                      }else{
+                        alert('오류가 발생했습니다.')
+                      }
                     })
                     setSubmitting(false);
                 }, 500)
@@ -93,7 +91,7 @@ function SignupPage(props) {
                   variant="outlined"
                   helperText={errors.name && touched.name ? errors.name : ""}
                   autoComplete="off"
-                  autoFocus="true"
+                  autoFocus={true}
                   />
                   <br/>
                 <TextField

@@ -1,5 +1,6 @@
 import React,{ useState } from 'react'
 import {useDispatch} from 'react-redux'
+import { loginUser } from '../actions';
 import {Formik} from "formik";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
@@ -9,9 +10,12 @@ import { Typography } from '@material-ui/core';
 import * as Yup from 'yup';
 function LoginPage() {
 
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
 
     return (
+      <div style={{height:'530px'}}>
+
+      
         <Formik
             initialValues={{
                 email: '',
@@ -29,7 +33,16 @@ function LoginPage() {
                         email: values.email,
                         password: values.password,
                     }
-                    console.log(data);
+                    dispatch(loginUser(data))
+                    .then(res=>{
+                      if(res.payload.success){
+                        if(res.payload.success){
+                          window.location.replace('/')
+                        }
+                      }else{
+                        console.log(res.payload.err);
+                      }
+                    })
                     setSubmitting(false);
                 }, 500)
             }}
@@ -65,8 +78,7 @@ function LoginPage() {
                   onBlur={handleBlur}
                   variant="outlined"
                   helperText={errors.email && touched.email ? errors.email : ""}
-                  autoComplete="off"
-                  autoFocus="true"
+                  autoFocus={true}
                   />
                   <br/>
                 <TextField
@@ -81,7 +93,6 @@ function LoginPage() {
                   onBlur={handleBlur}
                   variant="outlined" 
                   helperText={errors.password && touched.password ? errors.password : ""}
-                  autoComplete="off"
                   />
                   <br/>
 
@@ -94,6 +105,7 @@ function LoginPage() {
             </div>
             )}
         </Formik>
+      </div>
     )
 }
 
