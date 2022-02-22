@@ -3,7 +3,7 @@ import githubImg from '../../assets/github.png'
 
 function Footer() {
   return (
-    <div style={{textAlign:'center'}}>
+    <div style={{paddingTop:'20px', textAlign:'center'}}>
         <a href="https://github.com/abcd0978/reactBoard">
           <img src={githubImg} art="github pic"/>  
         </a>
